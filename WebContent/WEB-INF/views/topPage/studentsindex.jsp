@@ -24,7 +24,7 @@
                         <td class="message_name"><c:out value="${message.teacher.name}" /> 先生</td>
                         <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="message_title">${message.title}</td>
-                        <td class="message_action"><a href="<c:url value='/messages/showstudents?id=${message.id}' />">詳細を見る</a></td>
+                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -32,7 +32,7 @@
 
         <div id="pagination"> <%-- ページネーション --%>
             （全 ${messages_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 20) + 1}" step="1">
+            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;

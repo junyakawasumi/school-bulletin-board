@@ -46,9 +46,9 @@ public class StudentsTopPageIndexServlet extends HttpServlet {
         //全体公開のメッセージを取得
         //マックス20件
         List<Message> messages = em.createNamedQuery("getAllMessagesForStudents", Message.class)
-                .setFirstResult(20 * (page - 1))
-                .setMaxResults(20)
-                .getResultList();
+                .setFirstResult(15 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
+                .setMaxResults(15) //データの最大取得件数(15件で固定)
+                .getResultList(); //問合せ結果の取得
 
         long messages_count = (long)em.createNamedQuery("getAllMessagesForStudentsCount", Long.class)
                 .getSingleResult();

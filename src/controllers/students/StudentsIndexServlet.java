@@ -45,8 +45,8 @@ public class StudentsIndexServlet extends HttpServlet {
 
         //getAllStudentsメソッドを用いてデータをstudentsに格納
         List<Student> students = em.createNamedQuery("getAllStudents", Student.class)
-                                     .setFirstResult(20 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
-                                     .setMaxResults(20) //データの最大取得件数(20件で固定)
+                                     .setFirstResult(15 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
+                                     .setMaxResults(15) //データの最大取得件数(15件で固定)
                                      .getResultList(); //問合せ結果の取得
 
         //getStudentsCountメソッドを用いてデータの件数をlong型の変数students_countに格納

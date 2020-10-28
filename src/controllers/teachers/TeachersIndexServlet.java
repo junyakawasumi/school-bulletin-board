@@ -45,8 +45,8 @@ public class TeachersIndexServlet extends HttpServlet {
 
         //getAllTeachersメソッドを用いてデータをTeacher型のリストteachersに格納
         List<Teacher> teachers = em.createNamedQuery("getAllTeachers", Teacher.class)
-                                     .setFirstResult(20 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
-                                     .setMaxResults(20) //データの最大取得件数(20件で固定)
+                                     .setFirstResult(15 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
+                                     .setMaxResults(15) //データの最大取得件数(15件で固定)
                                      .getResultList(); //問合せ結果の取得
 
         //getTeachersCountメソッドを用いてデータの件数をlong型の変数teachers_countに格納

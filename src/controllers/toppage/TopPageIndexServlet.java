@@ -51,9 +51,9 @@ public class TopPageIndexServlet extends HttpServlet {
         //マックスは15件
         List<Message> messages = em.createNamedQuery("getMyAllMessages", Message.class)
                 .setParameter("teacher", login_teacher)
-                .setFirstResult(20 * (page - 1))
-                .setMaxResults(20)
-                .getResultList();
+                .setFirstResult(15 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
+                .setMaxResults(15) //データの最大取得件数(15件で固定)
+                .getResultList(); //問合せ結果の取得
 
         //JPQLでログインユーザーのIDと一致するメッセージの件数を取得
         long messages_count = (long)em.createNamedQuery("getMyMessagesCount", Long.class)
