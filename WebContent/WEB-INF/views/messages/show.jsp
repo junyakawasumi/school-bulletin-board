@@ -57,6 +57,7 @@
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value="/messages/index" />">一覧に戻る</a></p>
+        <p><a href="<c:url value="/messages/index" />">メッセージ一覧に戻る</a></p>
+        <p><a href="<c:url value="/messages/find" />">メッセージの検索</a></p>
     </c:param>
 </c:import>

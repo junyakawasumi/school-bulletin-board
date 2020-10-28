@@ -18,28 +18,36 @@ import javax.persistence.Table;
 @Table(name = "messages")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllMessages",
+            name = "getAllMessages", //メッセージデータ全件
             query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
             ),
     @NamedQuery(
-            name = "getMessagesCount",
+            name = "getMessagesCount", //メッセージデータの全件数
             query = "SELECT COUNT(m) FROM Message AS m"
             ),
     @NamedQuery(
-            name = "getMyAllMessages",
+            name = "getMyAllMessages", //ログインユーザーのメッセージデータ全件
             query = "SELECT m FROM Message AS m WHERE m.teacher = :teacher ORDER BY m.id DESC"
             ),
     @NamedQuery(
-            name = "getMyMessagesCount",
+            name = "getMyMessagesCount", //ログインユーザーのメッセージデータ全件数
             query = "SELECT COUNT(m) FROM Message AS m WHERE m.teacher = :teacher"
             ),
     @NamedQuery(
-            name = "getAllMessagesForStudents",
+            name = "getAllMessagesForStudents", //全体公開のメッセージデータ
             query = "SELECT m FROM Message AS m WHERE m.open_range = 0 ORDER BY m.id DESC"
             ),
     @NamedQuery(
-            name = "getAllMessagesForStudentsCount",
+            name = "getAllMessagesForStudentsCount", //全体公開のメッセージデータの件数
             query = "SELECT COUNT(m) FROM Message AS m WHERE m.open_range = 0"
+            ),
+    @NamedQuery(
+            name = "findMessages", //メッセージデータの検索
+            query = "SELECT m FROM Message AS m WHERE m.title LIKE :title OR m.content LIKE :content OR m.teacher.name LIKE :name ORDER BY m.id DESC"
+            ),
+    @NamedQuery(
+            name = "findMessagesCount", //メッセージデータ検索ヒット数
+            query = "SELECT COUNT(m) FROM Message AS m WHERE m.title LIKE :title OR m.content LIKE :content OR m.teacher.name LIKE :name"
             )
 })
 

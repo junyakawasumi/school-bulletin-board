@@ -3,12 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
-        <c:if test="${flush != null}"> <%-- フラッシュメッセージ --%>
-            <div id="flush_success">
-                <c:out value="${flush}"></c:out>
-            </div>
-        </c:if>
-        <h2>メッセージ 一覧</h2>
+        <h2>メッセージ検索ページ</h2>
+        
+        <form method="GET" action="<c:url value='/messages/findresult' />" >
+            <tr>
+                <td>キーワード: </td>
+                <td><input type="text" name="keyword" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="検索" /></td>
+            </tr>
+        </form>
+        <p>メッセージのタイトル・内容・投稿者で検索ができます。</p>
+        
+        <h2><c:out value="${keyword}" />検索ヒット数: <c:out value="${messages_count}" /></h2>
         <table id="message_list">
             <tbody>
                 <tr>
@@ -36,13 +45,11 @@
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/messages/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/messages/findresult?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='/messages/new' />">新規メッセージの登録</a></p>
-        <p><a href="<c:url value='/messages/find' />">メッセージの検索</a></p>
-
+        <p><a href="<c:url value='/messages/index' />">メッセージ一覧に戻る</a></p>
     </c:param>
 </c:import>
