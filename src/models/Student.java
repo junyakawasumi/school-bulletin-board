@@ -14,19 +14,19 @@ import javax.persistence.Table;
 @Table(name = "students")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllStudents",
+            name = "getAllStudents", //生徒データ全件
             query = "SELECT s FROM Student AS s ORDER BY s.id DESC"
             ),
     @NamedQuery(
-            name = "getStudentsCount",
+            name = "getStudentsCount", //生徒データの全件数
             query = "SELECT COUNT(s) FROM Student AS s"
             ),
     @NamedQuery(
-            name = "checkRegisteredStudentCode",
+            name = "checkRegisteredStudentCode", //コードのチェック
             query = "SELECT COUNT(s) FROM Student AS s WHERE s.code = :code"
             ),
     @NamedQuery(
-            name = "checkLoginStudentCodeAndPassword",
+            name = "checkLoginStudentCodeAndPassword", //delete_flag&コード&パスワードのチェック
             query = "SELECT s FROM Student AS s WHERE s.delete_flag = 0 AND s.code = :code AND s.password = :pass"
             )
 })
