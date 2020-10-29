@@ -28,6 +28,14 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "checkLoginCodeAndPassword", //delete_flag&コード&パスワードのチェック
             query = "SELECT t FROM Teacher AS t WHERE t.delete_flag = 0 AND t.code = :code AND t.password = :pass"
+            ),
+    @NamedQuery(
+            name = "findTeachers", //教職員データの検索
+            query = "SELECT t FROM Teacher AS t WHERE t.name LIKE :name ORDER BY t.id DESC"
+            ),
+    @NamedQuery(
+            name = "findTeachersCount", //教職員データの検索ヒット数
+            query = "SELECT COUNT(t) FROM Teacher AS t WHERE t.name LIKE :name"
             )
 })
 
