@@ -24,7 +24,7 @@
                     <th>氏名</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="teacher" items="${teachers}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大15件) --%>
+                <c:forEach var="teacher" items="${teachers}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大10件) --%>
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${teacher.code}" /></td> <%-- 教職員番号 --%>
                         <td><c:out value="${teacher.name}" /></td> <%-- 氏名 --%>
@@ -45,7 +45,7 @@
 
         <div id="pagination"> <%-- ページネーション --%>
             (全 ${teachers_count} 件)<br />
-            <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 5) + 1}" step="1">
+            <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 10) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -56,6 +56,26 @@
                 </c:choose>
             </c:forEach>
         </div>
+        
+        <h2><c:out value="${keyword}" />先生の最新メッセージ</h2>
+        <table id="message_list">
+            <tbody>
+                <tr>
+                    <th class="message_name">氏名</th>
+                    <th class="message_date">日付</th>
+                    <th class="message_title">タイトル</th>
+                    <th class="message_action">操作</th>
+                </tr>
+                <c:forEach var="message" items="${messages}" varStatus="status">
+                    <tr class="row${status.count % 2}">
+                        <td class="message_name"><c:out value="${message.teacher.name}" /></td>
+                        <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td>
+                        <td class="message_title">${message.title}</td>
+                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />">詳細を見る</a></td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 
         <p><a href="<c:url value='/teachers/index' />">教職員一覧に戻る</a></p>
     </c:param>

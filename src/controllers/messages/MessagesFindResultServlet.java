@@ -34,7 +34,7 @@ public class MessagesFindResultServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   
-      //データベースにアクセス
+        //データベースにアクセス
         EntityManager em = DBUtil.createEntityManager();
 
         //ページネーション
@@ -71,7 +71,7 @@ public class MessagesFindResultServlet extends HttpServlet {
 
         em.close();
 
-        //リクエストスコープにメッセージデータ, データ件数, ページ数を保存
+        //リクエストスコープに検索ワード、メッセージデータ, データ件数, ページ数を保存
         request.setAttribute("keyword", keyword);
         request.setAttribute("messages", messages);
         request.setAttribute("messages_count", messages_count);

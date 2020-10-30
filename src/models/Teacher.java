@@ -36,7 +36,11 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "findTeachersCount", //教職員データの検索ヒット数
             query = "SELECT COUNT(t) FROM Teacher AS t WHERE t.name LIKE :name"
-            )
+            ),
+    @NamedQuery(
+            name = "findTeachersMessages", //教職員検索時の関連メッセージ表示
+            query = "SELECT m FROM Message AS m WHERE m.teacher.name LIKE :name ORDER BY m.id DESC"
+            ),
 })
 
 @Entity
