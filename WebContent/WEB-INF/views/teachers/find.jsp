@@ -16,7 +16,7 @@
             </tr>
         </form>
 
-        <h2><c:out value="${keyword}" />検索ヒット数: <c:out value="${teachers_count}" /></h2>
+        <h2>[<c:out value="${keyword}" />]の検索ヒット数: <c:out value="${teachers_count}" /></h2>
         <table id="teacher_list">
             <tbody>
                 <tr>
@@ -45,13 +45,13 @@
 
         <div id="pagination"> <%-- ページネーション --%>
             (全 ${teachers_count} 件)<br />
-            <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 15) + 1}" step="1">
+            <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 5) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/teachers/findresult?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/teachers/findresult?keyword=${keyword}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

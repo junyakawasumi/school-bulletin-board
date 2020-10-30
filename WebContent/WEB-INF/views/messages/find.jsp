@@ -17,7 +17,7 @@
         </form>
         <p>メッセージのタイトル・内容・投稿者で検索ができます。</p>
         
-        <h2><c:out value="${keyword}" />検索ヒット数: <c:out value="${messages_count}" /></h2>
+        <h2>[<c:out value="${keyword}" />]の検索ヒット数: <c:out value="${messages_count}" /></h2>
         <table id="message_list">
             <tbody>
                 <tr>
@@ -39,13 +39,13 @@
 
         <div id="pagination">
             （全 ${messages_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1">
+            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 10) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/messages/findresult?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/messages/findresult?keyword=${keyword}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

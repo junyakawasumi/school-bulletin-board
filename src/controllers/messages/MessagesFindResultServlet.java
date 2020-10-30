@@ -53,16 +53,16 @@ public class MessagesFindResultServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/messages/index");
         } else {
 
-        //findMessagesメソッドを用いてデータをMessage型のリストmessagesに格納
+        //findMessages(JPQL)を用いてデータをMessage型のリストmessagesに格納
         List<Message> messages = em.createNamedQuery("findMessages", Message.class)
                 .setParameter("title", "%" + keyword + "%")
                 .setParameter("content", "%" + keyword + "%")
                 .setParameter("name", "%" + keyword + "%")
-                .setFirstResult(15 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
-                .setMaxResults(15) //データの最大取得件数(15件で固定)
+                .setFirstResult(10 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
+                .setMaxResults(10) //データの最大取得件数(10件で固定)
                 .getResultList(); //問合せ結果の取得
 
-        //findMessagesCountメソッドを用いてデータの件数をlong型の変数messages_countに格納
+        //findMessagesCount(JPQL)を用いてデータの件数をlong型の変数messages_countに格納
         long messages_count = (long)em.createNamedQuery("findMessagesCount", Long.class)
                 .setParameter("title", "%" + keyword + "%")
                 .setParameter("content", "%" + keyword + "%")
@@ -72,7 +72,7 @@ public class MessagesFindResultServlet extends HttpServlet {
         em.close();
 
         //リクエストスコープにメッセージデータ, データ件数, ページ数を保存
-        request.setAttribute("keyword", "[" + keyword + "]の");
+        request.setAttribute("keyword", keyword);
         request.setAttribute("messages", messages);
         request.setAttribute("messages_count", messages_count);
         request.setAttribute("page", page);

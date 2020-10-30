@@ -52,14 +52,14 @@ public class TeachersFindResultServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/teachers/index");
         } else {
 
-        //findTeachersメソッドを用いてデータをTeacher型のリストteachersに格納
+        //findTeachers(JPQL)を用いてデータをTeacher型のリストteachersに格納
             List<Teacher> teachers = em.createNamedQuery("findTeachers", Teacher.class)
                 .setParameter("name", "%" + keyword + "%")
-                .setFirstResult(15 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
-                .setMaxResults(15) //データの最大取得件数(15件で固定)
+                .setFirstResult(5 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
+                .setMaxResults(5) //データの最大取得件数(5件で固定)
                 .getResultList(); //問合せ結果の取得
 
-        //findTeachersCountメソッドを用いてデータの件数をlong型の変数teachers_countに格納
+        //findTeachersCount(JPQL)を用いてデータの件数をlong型の変数teachers_countに格納
         long teachers_count = (long)em.createNamedQuery("findTeachersCount", Long.class)
                 .setParameter("name", "%" + keyword + "%")
                 .getSingleResult();
@@ -67,7 +67,7 @@ public class TeachersFindResultServlet extends HttpServlet {
         em.close();
 
         //リクエストスコープにメッセージデータ, データ件数, ページ数を保存
-        request.setAttribute("keyword", "[" + keyword + "]の");
+        request.setAttribute("keyword", keyword);
         request.setAttribute("teachers", teachers);
         request.setAttribute("teachers_count", teachers_count);
         request.setAttribute("page", page);
