@@ -23,16 +23,16 @@
 <label for="grade">学年</label><br />
 <select name="grade">
     <option value="1"<c:if test="${student.grade == 1}"> selected</c:if>>1</option>
-    <option value="2"<c:if test="${student.grade == 2}"> selected</c:if>>2</option>
-    <option value="3"<c:if test="${student.grade == 3}"> selected</c:if>>3</option>
+    <option value="2"<c:if test="${student.grade == 2}"></c:if>>2</option>
+    <option value="3"<c:if test="${student.grade == 3}"></c:if>>3</option>
 </select>
 <br /><br />
 
 <label for="team">クラス</label><br />
 <select name="team">
     <option value="1"<c:if test="${student.team == 1}"> selected</c:if>>1</option>
-    <option value="2"<c:if test="${student.team == 2}"> selected</c:if>>2</option>
-    <option value="3"<c:if test="${student.team == 3}"> selected</c:if>>3</option>
+    <option value="2"<c:if test="${student.team == 2}"></c:if>>2</option>
+    <option value="3"<c:if test="${student.team == 3}"></c:if>>3</option>
 </select>
 <br /><br />
 
