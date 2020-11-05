@@ -17,7 +17,7 @@
                     <th>氏名</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="student" items="${students}" varStatus="status"> <%-- 生徒のデータを繰り返し表示(最大20件) --%>
+                <c:forEach var="student" items="${students}" varStatus="status"> <%-- 生徒のデータを繰り返し表示(最大15件) --%>
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${student.code}" /></td> <%-- 学生証番号 --%>
                         <td><c:out value="${student.grade}" /></td> <%-- 学年 --%>
@@ -52,5 +52,6 @@
             </c:forEach>
         </div>
         <p><a href="<c:url value='/students/new' />">新規生徒の登録</a></p>
+        <p><a href="<c:url value='/students/find' />">クラス別表示</a></p>
     </c:param>
 </c:import>

@@ -48,8 +48,9 @@ public class TeachersFindResultServlet extends HttpServlet {
 
         String keyword = request.getParameter("keyword");
 
-        // keywordが選択されなかった場合はteachersindexへフォワード
         if (keyword == null || keyword.equals("")) {
+            // keywordが選択されなかった場合の処理
+            em.close();
             response.sendRedirect(request.getContextPath() + "/teachers/index");
         } else {
 

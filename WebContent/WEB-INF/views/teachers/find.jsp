@@ -26,8 +26,8 @@
                 </tr>
                 <c:forEach var="teacher" items="${teachers}" varStatus="status"> <%-- 教職員のデータを繰り返し表示(最大10件) --%>
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${teacher.code}" /></td> <%-- 教職員番号 --%>
-                        <td><c:out value="${teacher.name}" /></td> <%-- 氏名 --%>
+                        <td><c:out value="${teacher.code}" /></td> 
+                        <td><c:out value="${teacher.name}" /></td>
                         <td>
                             <c:choose>
                                 <c:when test="${teacher.delete_flag == 1}"> <%-- delete_flagが1の場合(削除済)の処理 --%>
@@ -58,7 +58,7 @@
         </div>
         
         <h2><c:out value="${keyword}" />先生の最新メッセージ</h2>
-        <table id="message_list">
+        <table id="message_list"> <%-- 検索された教職員のメッセージを表示 最大５件 --%>
             <tbody>
                 <tr>
                     <th class="message_name">氏名</th>

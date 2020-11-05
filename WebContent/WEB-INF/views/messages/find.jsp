@@ -18,7 +18,7 @@
         <p>メッセージのタイトル・内容・投稿者で検索ができます。</p>
         
         <h2>[<c:out value="${keyword}" />]の検索ヒット数: <c:out value="${messages_count}" /></h2>
-        <table id="message_list">
+        <table id="message_list"> <%-- メッセージデータを繰り返し表示(最大10件) --%>
             <tbody>
                 <tr>
                     <th class="message_name">氏名</th>

@@ -41,9 +41,11 @@ public class TeachersEditServlet extends HttpServlet {
         em.close();
 
         //リクエストスコープに取得したデータ一件, セッションID, リクエストスコープにIDを保存
+        if(t != null) {
         request.setAttribute("teacher", t);
         request.setAttribute("_token", request.getSession().getId());
         request.getSession().setAttribute("teacher_id", t.getId());
+        }
 
         //フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/teachers/edit.jsp");
