@@ -34,6 +34,7 @@ public class TeachersFindResultServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         //データベースにアクセス
         EntityManager em = DBUtil.createEntityManager();
 
@@ -48,14 +49,14 @@ public class TeachersFindResultServlet extends HttpServlet {
 
         String keyword = request.getParameter("keyword");
 
+        // keywordが選択されなかった場合はteachersindexへフォワード
         if (keyword == null || keyword.equals("")) {
-            // keywordが選択されなかった場合の処理
             em.close();
-            response.sendRedirect(request.getContextPath() + "/teachers/index");
+            response.sendRedirect(request.getContextPath() + "/teachers/find");
         } else {
 
         //findTeachers(JPQL)を用いてデータをTeacher型のリストteachersに格納
-        List<Teacher> teachers = em.createNamedQuery("findTeachers", Teacher.class)
+            List<Teacher> teachers = em.createNamedQuery("findTeachers", Teacher.class)
                 .setParameter("name", "%" + keyword + "%")
                 .setFirstResult(10 * (page - 1)) //何件目からデータを取得するか(スタートは0番目)
                 .setMaxResults(10) //データの最大取得件数(10件で固定)
@@ -65,7 +66,7 @@ public class TeachersFindResultServlet extends HttpServlet {
         long teachers_count = (long)em.createNamedQuery("findTeachersCount", Long.class)
                 .setParameter("name", "%" + keyword + "%")
                 .getSingleResult();
-        
+
         //findTeachersMessages(JPQL)を用いてデータのmessage型のリストmessagesに格納
         List<Message> messages = em.createNamedQuery("findTeachersMessages", Message.class)
                 .setParameter("name", "%" + keyword + "%")
@@ -80,6 +81,7 @@ public class TeachersFindResultServlet extends HttpServlet {
         request.setAttribute("teachers", teachers);
         request.setAttribute("teachers_count", teachers_count);
         request.setAttribute("messages", messages);
+        //request.setAttribute("messages_count", messages_count);
         request.setAttribute("page", page);
 
         //フラッシュメッセージ処理

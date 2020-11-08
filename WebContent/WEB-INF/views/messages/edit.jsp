@@ -2,18 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
+
         <c:choose>
             <c:when test="${message != null}">
-                <h2>メッセージ 編集ページ</h2>
+                <h2 class="text-center mb-2">メッセージ 編集ページ</h2>
                 <form method="POST" action="<c:url value='/messages/update' />">
                     <c:import url="_form.jsp" />
                 </form>
             </c:when>
             <c:otherwise>
-                <h2>お探しのデータは見つかりませんでした。</h2>
+                <div class="alert alert-warning text-center" role="alert">お探しのデータは見つかりませんでした。</div>
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value='/messages/index' />">メッセージ一覧に戻る</a></p>
+        <p><a href="<c:url value='/messages/index' />" class="text-info">一覧に戻る</a></p>
+
     </c:param>
 </c:import>
