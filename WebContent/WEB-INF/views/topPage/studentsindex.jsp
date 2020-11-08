@@ -3,42 +3,47 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/studentsapp.jsp">
     <c:param name="content">
+
+        <%-- フラッシュメッセージ --%>
         <c:if test="${flush != null}">
-            <div id="flush_success">
+            <div id="flush_success" class="alert alert-success" role="alert">
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>●●高等学校掲示板へようこそ！</h2>
-        <h3>【メッセージ一覧】</h3>
 
-        <table id="message_list"> <%-- テーブル --%>
+        <h3 class="text-center mb-3">●●高等学校掲示板へようこそ！</h3>
+        <h3 class="text-center mb-4">【メッセージ一覧】</h3>
+
+        <!-- 全体公開のメッセージ一覧 -->
+        <table class="table">
             <tbody>
                 <tr>
-                    <th class="message_name">氏名</th>
-                    <th class="message_date">日付</th>
-                    <th class="message_title">タイトル</th>
-                    <th class="message_action">操作</th>
+                    <th scope="col">氏名</th>
+                    <th scope="col">日付</th>
+                    <th scope="col">タイトル</th>
+                    <th scope="col">操作</th>
                 </tr>
                 <c:forEach var="message" items="${messages}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td class="message_name"><c:out value="${message.teacher.name}" /> 先生</td>
-                        <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td>
-                        <td class="message_title">${message.title}</td>
-                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />">詳細を見る</a></td>
+                        <td class="message_name"><c:out value="${message.teacher.name}" /> 先生</td> <!-- 氏名 -->
+                        <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td> <!-- 日付 -->
+                        <td class="message_title">${message.title}</td> <!-- タイトル -->
+                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />" class="btn btn-outline-info">詳細</a></td> <!-- 詳細(showへのリンク) -->
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
 
-        <div id="pagination"> <%-- ページネーション --%>
+        <%-- ページネーション --%>
+        <div id="pagination" class="mb-3">
             （全 ${messages_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1">
+            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1"> <!-- 最大15件表示 -->
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
                     </c:when>
                     <c:otherwise>
-                        <a href="<c:url value='/?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                        <a href="<c:url value='/stoppage?page=${i}' />" class="text-info"><c:out value="${i}" /></a>&nbsp;
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

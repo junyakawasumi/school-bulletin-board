@@ -5,20 +5,20 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${teacher != null}"> <%-- "teacher"がnullではなかった場合の処理 --%>
-                <h2>${teacher.name} 先生の教職員情報 詳細ページ</h2>
+                <h3 class="text-center mb-4">${teacher.name} 先生の教職員情報 詳細ページ</h3>
 
-                <table>
+                <table class="table">
                     <tbody>
                         <tr>
-                            <th>教職員番号</th>
+                            <th scope="row">教職員番号</th>
                             <td><c:out value="${teacher.code}" /></td>
                         </tr>
                         <tr>
-                            <th>氏名</th>
+                            <th scope="row">氏名</th>
                             <td><c:out value="${teacher.name}" /></td>
                         </tr>
                         <tr>
-                            <th>所属</th>
+                            <th scope="row">所属</th>
                             <td>
                                 <c:choose>
                                     <c:when test="${teacher.admin_flag == 1}">教務部</c:when>
@@ -27,13 +27,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>登録日時</th>
+                            <th scope="row">登録日時</th>
                             <td>
                                 <fmt:formatDate value="${teacher.created_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
                         </tr>
                         <tr>
-                            <th>更新日時</th>
+                            <th scope="row">更新日時</th>
                             <td>
                                 <fmt:formatDate value="${teacher.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                             </td>
@@ -41,13 +41,14 @@
                     </tbody>
                 </table>
 
-                <p><a href="<c:url value='/teachers/edit?id=${teacher.id}' />">この教職員情報を編集する</a></p>
+                <p><a href="<c:url value='/teachers/edit?id=${teacher.id}' />" class="text-info">この教職員情報を編集する</a></p>
             </c:when>
             <c:otherwise>
-                <h2>お探しのデータは見つかりませんでした。</h2>
+                <div class="alert alert-warning text-center" role="alert">お探しのデータは見つかりませんでした。</div>
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value='/teachers/index' />">教職員一覧に戻る</a></p>
+        <p><a href="<c:url value='/teachers/find' />" class="text-info">教職員検索に戻る</a></p>
+        <p><a href="<c:url value='/teachers/index' />" class="text-info">教職員一覧に戻る</a></p>
     </c:param>
 </c:import>
