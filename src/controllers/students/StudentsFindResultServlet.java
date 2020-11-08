@@ -39,32 +39,30 @@ public class StudentsFindResultServlet extends HttpServlet {
         //データ受け取り用の変数を用意
         int grade = 0;
         int team = 0;
-        String findResult = "学年及びクラスは1〜3の数字から選択して下さい。";
+        long students_count = 0L;
 
         //データの受け取り&例外処理(文字列を直接入力された場合の処理)
         try {
             grade = Integer.parseInt(request.getParameter("grade"));
             team = Integer.parseInt(request.getParameter("team"));
         } catch (NumberFormatException e) {
-            e.printStackTrace();
             em.close();
-            request.setAttribute("findResult", findResult);
+            e.printStackTrace();
+            request.setAttribute("students_count", students_count);
             //フォワード
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/students/find.jsp");
             rd.forward(request, response);
-            
         }
 
         //データベース処理
         if (grade < 1 || grade > 3 || team < 1 || team > 3) {
             //学年・クラスで1〜3以外の数字が選択された場合の処理
             em.close();
-            request.setAttribute("findResult", findResult);
+            request.setAttribute("students_count", students_count);
             //フォワード
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/students/find.jsp");
             rd.forward(request, response);
         } else {
-
             //findStudentsメソッドを用いてデータをStudent型のリストstudentsに格納
             List<Student> students = em.createNamedQuery("findStudents", Student.class)
                     .setParameter("grade", grade)
@@ -74,7 +72,7 @@ public class StudentsFindResultServlet extends HttpServlet {
                     .getResultList(); //問合せ結果の取得
 
             //findStudentsCountメソッドを用いてデータの件数をlong型の変数students_countに格納
-            long students_count = (long)em.createNamedQuery("findStudentsConut", Long.class)
+            students_count = (long)em.createNamedQuery("findStudentsConut", Long.class)
                     .setParameter("grade", grade)
                     .setParameter("team", team)
                     .getSingleResult();
@@ -82,7 +80,7 @@ public class StudentsFindResultServlet extends HttpServlet {
             em.close();
 
             //検索された学年・クラス・総生徒数
-            findResult = grade + "年" + team + "組: " + students_count + "名";
+            String findResult = grade + "年" + team + "組: " + students_count + "名";
 
             //リクエストスコープにメッセージデータ, データ件数, ページ数を保存
             request.setAttribute("findResult", findResult);
