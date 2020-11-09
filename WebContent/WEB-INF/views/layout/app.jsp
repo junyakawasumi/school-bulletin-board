@@ -13,18 +13,19 @@
     </head>
     <body>
         <div class="container">
-
-            <!-- ナビゲーション(ヘッダー) -->
+        
+            <%-- ナビゲーション --%>
             <nav class="navbar navbar-expand-lg navbar-light p-4 my-3 bg-info">
-                <a class="navbar-brand" href="<c:url value='/' />">●●高等学校掲示板</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- アプリ名 -->
+                <a class="navbar-brand" href="<c:url value='/' />">●●高等学校掲示板</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%-- アプリ名 --%>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <c:if test="${sessionScope.login_teacher != null}">
-                        <c:if test="${sessionScope.login_teacher.admin_flag == 1}"> <!-- 管理者ユーザーにのみ表示 -->
-                            <!-- 教職員管理 -->
+                        <c:if test="${sessionScope.login_teacher.admin_flag == 1}"> <%-- 管理者にのみ表示 --%>
+           
+                            <%-- 教職員管理 --%>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   教職員管理
@@ -35,7 +36,8 @@
                                   <a class="dropdown-item" href="<c:url value='/teachers/new' />">・新規登録</a>
                                 </div>
                             </li>
-                            <!-- 生徒管理 -->
+                            
+                            <%-- 生徒管理 --%>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   生徒管理
@@ -46,20 +48,25 @@
                                   <a class="dropdown-item" href="<c:url value='/students/new' />">・新規登録</a>
                                 </div>
                             </li>
+                            
                         </c:if>
-                        <!-- メッセージ管理 -->
+                        
+                        <%-- メッセージ管理 --%>
                         <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  メッセージ管理
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                  <a class="dropdown-item" href="<c:url value='/messages/index' />">・一覧表示</a>
-                                  <a class="dropdown-item" href="<c:url value='/messages/find' />">・検索</a>
-                                  <a class="dropdown-item" href="<c:url value='/messages/new' />">・新規メッセージの投稿</a>
-                                </div>
-                            </li>
+                            <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              メッセージ管理
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="<c:url value='/messages/index' />">・一覧表示</a>
+                                <a class="dropdown-item" href="<c:url value='/messages/find' />">・検索</a>
+                                <a class="dropdown-item" href="<c:url value='/messages/new' />">・新規メッセージの投稿</a>
+                            </div>
+                        </li>
+                        
                     </c:if>
                 </ul>
+                
+                <%-- ログインユーザー名&ログアウトリンク --%>
                 <ul class="navbar-nav">
                     <c:if test="${sessionScope.login_teacher != null}">
                         <li class="nav-item">
@@ -70,15 +77,16 @@
                         </li>
                     </c:if>
                 </ul>
+                
                 </div>
             </nav>
 
-            <!-- コンテンツ -->
+            <%-- コンテンツ --%>
             <div id="content">
                 ${param.content}
             </div>
 
-            <!-- フッター -->
+            <%-- フッター --%>
             <div id="footer" class="text-center mb-4">
                 by Junya Kawasumi.
             </div>

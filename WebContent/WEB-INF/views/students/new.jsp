@@ -3,9 +3,11 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
         <h3 class="text-center mb-3">新規生徒登録ページ</h3>
+        <%-- フォーム --%>
         <form method="POST" action="<c:url value='/students/create' />">
             <c:import url="_form.jsp" />
         </form>
+        <%-- リンク --%>
         <p><a href="<c:url value='/students/index' />" class="text-info">生徒一覧に戻る</a></p>
     </c:param>
 </c:import>

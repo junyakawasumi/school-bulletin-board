@@ -11,13 +11,15 @@
     <body>
         <div class="container">
 
-            <!-- ナビゲーション(ヘッター) -->
+            <%-- ナビゲーション --%>
             <nav class="navbar navbar-expand-lg navbar-light p-4 my-3 bg-info text-dark">
                 <a class="navbar-brand" href="<c:url value='/stoppage' />">●●高等学校掲示板</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <!-- アプリ名 -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                
+                <%-- ログインユーザー名&ログアウトリンク --%>
+                <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <c:if test="${sessionScope.login_student != null}">
                         <li class="nav-item">
@@ -31,12 +33,12 @@
                 </div>
             </nav>
 
-            <!-- コンテンツ -->
+            <%-- コンテンツ --%>
             <div id="content">
                 ${param.content}
             </div>
 
-            <!-- フッター -->
+            <%-- フッター --%>
             <div id="footer" class="text-center mb-4">
                 by Junya Kawasumi.
             </div>

@@ -4,10 +4,12 @@
 <c:import url="/WEB-INF/views/layout/studentsapp.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${message != null}"><%-- messageがnullではなかった場合の処理 --%>
+            <%-- messageがnullではなかった場合の処理 --%>
+            <c:when test="${message != null}">
+            
                 <h3 class="text-center mb-4">メッセージ 詳細ページ</h3>
 
-                <!-- データを1件表示 -->
+                <%-- データを１件表示 --%>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -39,11 +41,13 @@
                     </tbody>
                 </table>
             </c:when>
+            <%-- messageがnullだった場合の処理 --%>
             <c:otherwise>
                 <div class="alert alert-warning text-center" role="alert">お探しのデータは見つかりませんでした。</div>
             </c:otherwise>
         </c:choose>
 
+        <%-- リンク --%>
         <p><a href="<c:url value="/stoppage" />" class="text-info">トップページに戻る</a></p>
 
     </c:param>

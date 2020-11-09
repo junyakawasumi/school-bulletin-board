@@ -6,7 +6,7 @@
 
         <h3 class="text-center mb-2">教職員検索ページ</h3>
 
-        <!-- 検索フォーム -->
+        <%-- フォーム --%>
         <form method="GET" action="<c:url value='/teachers/findresult' />">
             <div class="form-group">
                 <label for="meyword"></label><br />
@@ -15,7 +15,7 @@
             <button type="submit" class="btn btn-outline-info mb-4">検索</button>
         </form>
 
-        <!-- 検索結果を表示 -->
+        <%-- 検索結果を表示 --%>
         <c:choose>
             <c:when test="${teachers_count != 0}">
                 <h2>[<c:out value="${keyword}" />]の検索ヒット数: <c:out value="${teachers_count}" /></h2>
@@ -36,7 +36,7 @@
                                             [削除済み]
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="<c:url value='/teachers/show?id=${teacher.id}' />" class="btn btn-outline-info">詳細</a> <!-- 詳細(showへのリンク) -->
+                                            <a href="<c:url value='/teachers/show?id=${teacher.id}' />" class="btn btn-outline-info">詳細</a> 
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
@@ -48,7 +48,7 @@
                 <%-- ページネーション --%>
                 <div id="pagination" class="mb-3">
                     (全 ${teachers_count} 件)<br />
-                    <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 10) + 1}" step="1"> <!-- 教職員データを最大10件表示 -->
+                    <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 10) + 1}" step="1"> <%-- データを最大１５件表示 --%>
                         <c:choose>
                             <c:when test="${i == page}">
                                 <c:out value="${i}" />&nbsp;
@@ -60,7 +60,8 @@
                     </c:forEach>
                 </div>
                 <br><br>
-
+                
+                <%-- 検索ワードに基づくメッセージを表示 --%>
                 <h2><c:out value="${keyword}" />先生の最新メッセージ</h2>
                 <table class="table">
                     <tbody>
@@ -72,21 +73,24 @@
                         </tr>
                         <c:forEach var="message" items="${messages}" varStatus="status">
                             <tr class="row${status.count % 2}">
-                                <td><c:out value="${message.teacher.name}" /></td> <!-- 氏名 -->
-                                <td><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td> <!-- 日付 -->
-                                <td>${message.title}</td> <!-- タイトル -->
-                                <td><a href="<c:url value='/messages/show?id=${message.id}' />" class="btn btn-outline-info">詳細</a></td> <!-- 詳細(showへのリンク) -->
+                                <td><c:out value="${message.teacher.name}" /></td> <%-- 氏名 --%>
+                                <td><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td> <%-- 日付 --%>
+                                <td>${message.title}</td> <%-- タイトル --%>
+                                <td><a href="<c:url value='/messages/show?id=${message.id}' />" class="btn btn-outline-info">詳細</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
             </c:when>
+            <%-- 検索結果が０だった場合の処理 --%>
             <c:otherwise>
-                    <div class="alert alert-warning mb-3 text-center" role="alert">お探しのデータは見つかりませんでした。</div> <!-- 検索結果が0だった場合 -->
+                    <div class="alert alert-warning mb-3 text-center" role="alert">お探しのデータは見つかりませんでした。</div>
             </c:otherwise>
         </c:choose>
-
+        
+        <%-- リンク --%>
         <p><a href="<c:url value='/teachers/index' />" class="text-info">教職員一覧に戻る</a></p>
+        
     </c:param>
 </c:import>
 

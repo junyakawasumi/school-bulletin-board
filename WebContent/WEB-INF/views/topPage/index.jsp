@@ -14,7 +14,7 @@
         <h3 class="text-center mb-3">●●高等学校掲示板へようこそ！</h3>
         <h3 class="text-center mb-4">【<c:out value="${teacher.name}" />先生のメッセージ 一覧】</h3>
 
-        <!-- ログインユーザーのメッセージ一覧 -->
+        <%-- ログインユーザーのメッセージ一覧 --%>
         <table class="table">
             <tbody>
                 <tr>
@@ -25,10 +25,10 @@
                 </tr>
                 <c:forEach var="message" items="${messages}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td class="message_name"><c:out value="${message.teacher.name}" /></td> <!-- 氏名 -->
-                        <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td> <!-- 日付 -->
-                        <td class="message_title">${message.title}</td> <!-- タイトル -->
-                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />" class="btn btn-outline-info">詳細</a></td> <!-- 詳細(showへのリンク) -->
+                        <td class="message_name"><c:out value="${message.teacher.name}" /></td> <%-- 氏名 --%>
+                        <td class="message_date"><fmt:formatDate value='${message.message_date}' pattern='yyyy-MM-dd' /></td> <%-- 日付 --%>
+                        <td class="message_title">${message.title}</td> <%-- タイトル --%>
+                        <td class="message_action"><a href="<c:url value='/messages/show?id=${message.id}' />" class="btn btn-outline-info">詳細</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
@@ -37,7 +37,7 @@
         <%-- ページネーション --%>
         <div id="pagination" class="mb-3">
             （全 ${messages_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1"> <!-- 最大15件表示 -->
+            <c:forEach var="i" begin="1" end="${((messages_count - 1) / 15) + 1}" step="1"> <%-- データを最大１５件表示 --%>
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -49,6 +49,7 @@
             </c:forEach>
         </div>
 
+        <%-- リンク --%>
         <p><a href="<c:url value='/messages/new' />" class="text-info">新規メッセージの投稿</a></p>
 
     </c:param>

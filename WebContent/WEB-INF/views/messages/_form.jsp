@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
      <%-- フラッシュメッセージ --%>
     <c:if test="${errors != null}">
         <div class="alert alert-danger" role="alert">
@@ -36,6 +37,5 @@
             <option value="1"<c:if test="${message.open_range == 1}"> selected</c:if>>教職員のみ</option>
         </select>
     </div>
-
     <input type="hidden" name="_token" value="${_token}" />
     <button type="submit" class="btn btn-outline-info mb-3">投稿</button>

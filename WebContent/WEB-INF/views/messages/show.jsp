@@ -4,10 +4,12 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${message != null}"><%-- messageがnullではなかった場合の処理 --%>
+            <%-- messageがnullではなかった場合の処理 --%>
+            <c:when test="${message != null}">
+            
                 <h3 class="text-center mb-4">メッセージ 詳細ページ</h3>
 
-                <!-- データを1件表示 -->
+                <%-- データを１件表示 --%>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -47,17 +49,18 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <c:if test="${sessionScope.login_teacher.id == message.teacher.id}"> <%-- ログインユーザーとメッセージの作成者が一致した場合はメッセージの編集が可能 --%>
+                <%-- ログインユーザーとメッセージの作成者が一致した場合はメッセージの編集が可能 --%>
+                <c:if test="${sessionScope.login_teacher.id == message.teacher.id}"> 
                     <p><a href="<c:url value="/messages/edit?id=${message.id}" />" class="text-info">このメッセージを編集する</a></p>
                 </c:if>
-
             </c:when>
+            <%-- messageがnullだった場合の処理 --%>
             <c:otherwise>
                 <div class="alert alert-warning text-center" role="alert">お探しのデータは見つかりませんでした。</div>
             </c:otherwise>
         </c:choose>
 
+        <%-- リンク --%>
         <p><a href="<c:url value="/messages/find" />" class="text-info">メッセージ検索に戻る</a></p>
         <p><a href="<c:url value="/messages/index" />" class="text-info">メッセージ一覧に戻る</a></p>
 

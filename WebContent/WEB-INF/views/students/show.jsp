@@ -4,9 +4,12 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${student != null}"> <%-- "student"がnullではなかった場合の処理 --%>
+            <%-- "student"がnullではなかった場合の処理 --%>
+            <c:when test="${student != null}"> 
+            
                 <h3 class="text-center mb-4">${student.name} の生徒情報 詳細ページ</h3>
-
+                
+                <%-- データを一件表示 --%>
                 <table class="table">
                     <tbody>
                         <tr>
@@ -39,14 +42,15 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <p><a href="<c:url value='/students/edit?id=${student.id}' />" class="text-info">情報を編集する</a></p>
             </c:when>
+            <%-- "student"がnullだった場合の処理 --%>
             <c:otherwise>
                 <div class="alert alert-warning text-center" role="alert">お探しのデータは見つかりませんでした。</div>
             </c:otherwise>
         </c:choose>
 
+        <%-- リンク --%>
         <p><a href="<c:url value='/students/find' />" class="text-info">クラス別表示に戻る</a></p>
         <p><a href="<c:url value='/students/index' />" class="text-info">生徒一覧に戻る</a></p>
 

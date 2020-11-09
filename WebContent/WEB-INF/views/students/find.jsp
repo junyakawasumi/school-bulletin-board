@@ -7,7 +7,7 @@
         <h3 class="text-center mb-3">クラス別表示ページ</h3>
         <small class="form-text text-muted text-center">学年・クラスを選択して下さい。</small>
 
-        <!-- 検索フォーム -->
+        <%-- フォーム --%>
         <form method="GET" action="<c:url value='/students/findresult' />" class="mb-3">
             <div class="form-group">
                 <label for="grade"></label>
@@ -28,7 +28,7 @@
             <button type="submit" class="btn btn-outline-info mb-2">表示</button>
         </form>
 
-        <!-- 検索結果を表示 -->
+        <%-- 検索結果を表示 --%>
         <c:choose>
             <c:when test="${students_count != 0}">
                 <h2><c:out value="${findResult}" /></h2>
@@ -53,7 +53,7 @@
                                             [削除済み]
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="<c:url value='/students/show?id=${student.id}' />" class="btn btn-outline-info">詳細</a> <!-- 詳細(showへのリンク) -->
+                                            <a href="<c:url value='/students/show?id=${student.id}' />" class="btn btn-outline-info">詳細</a>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
@@ -62,11 +62,13 @@
                     </tbody>
                 </table>
             </c:when>
+            <%-- 検索ワードが１〜３以外だった場合の処理 --%>
             <c:otherwise>
-                    <div class="alert alert-warning mb-3 text-center" role="alert">学年及びクラスは1〜3の数字から選択して下さい。</div> <!-- 検索ワードが1〜3以外だった場合 -->
+                    <div class="alert alert-warning mb-3 text-center" role="alert">学年及びクラスは1〜3の数字から選択して下さい。</div> 
             </c:otherwise>
         </c:choose>
-
+    
+        <%-- リンク --%>
         <p><a href="<c:url value='/students/index' />" class="text-info">生徒一覧に戻る</a></p>
 
     </c:param>

@@ -12,7 +12,7 @@
 
         <h3 class="text-center mb-4">教職員 一覧</h3>
 
-        <!-- 教職員を一覧表示 -->
+        <%-- 教職員を一覧表示 --%>
         <table class="table">
             <tbody>
                 <tr>
@@ -30,7 +30,7 @@
                                     <span class="badge badge-secondary p-2">削除済み</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="<c:url value='/teachers/show?id=${teacher.id}' />" class="btn btn-outline-info">詳細</a> <!-- 詳細(showへのリンク) -->
+                                    <a href="<c:url value='/teachers/show?id=${teacher.id}' />" class="btn btn-outline-info">詳細</a>
                                 </c:otherwise>
                             </c:choose>
                         </td>
@@ -42,7 +42,7 @@
         <%-- ページネーション --%>
         <div id="pagination" class="mb-3">
             (全 ${teachers_count} 件)<br />
-            <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 15) + 1}" step="1"> <!-- 最大15件表示 -->
+            <c:forEach var="i" begin="1" end="${((teachers_count - 1) / 15) + 1}" step="1"> <%-- データを最大１５件表示 --%>
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -54,6 +54,7 @@
             </c:forEach>
         </div>
 
+        <%-- リンク --%>
         <p><a href="<c:url value='/teachers/new' />" class="text-info">新規教職員の登録</a></p>
         <p><a href="<c:url value='/teachers/find' />" class="text-info">教職員の検索</a></p>
 

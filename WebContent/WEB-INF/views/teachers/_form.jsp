@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
     <%-- 入力内容のエラーチェック --%>
     <c:if test="${errors != null}">
         <div class="alert alert-danger" role="alert">
@@ -30,6 +31,5 @@
             <option value="1"<c:if test="${teacher.admin_flag == 1}"></c:if>>教務部</option>
         </select>
     </div>
-
     <input type="hidden" name="_token" value="${_token}" /> <%-- セッションID --%>
     <button type="submit" class="btn btn-outline-info mb-3">登録</button>

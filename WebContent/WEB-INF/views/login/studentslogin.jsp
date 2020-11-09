@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/views/layout/studentsapp.jsp">
     <c:param name="content">
 
-        <!-- フラッシュメッセージ -->
+        <%-- フラッシュメッセージ --%>
         <c:if test="${flush != null}">
             <div class="alert alert-danger" role="alert">
                 <c:out value="${flush}"></c:out>
@@ -12,14 +12,14 @@
 
         <h3 class="text-center my-4">生徒用ログインページ</h3>
 
-        <!-- エラー内容 -->
+        <%-- エラー内容 --%>
         <c:if test="${hasError}">
             <div class="alert alert-danger text-center" role="alert">
                 学生証番号かパスワードが間違っています。
             </div>
         </c:if>
 
-        <!-- ログインフォーム -->
+        <%-- フォーム --%>
         <div class="row justify-content-center align-items-center h-100">
             <div class="col col-sm-6">
                 <form method="POST" action="<c:url value='/slogin' />">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <!-- 教職員用ログインリンク -->
+        <%-- リンク --%>
         <p class="text-center"><a href="<c:url value='/tlogin' />" class="text-info">教職員用ログインはこちら</a></p>
 
     </c:param>
